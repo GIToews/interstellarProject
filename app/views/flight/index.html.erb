@@ -1,0 +1,19 @@
+<h1>Browse flights</h1>
+<%= form_tag("/", method: "get") do %>
+    <%= label_tag(:search, "Search:") %>
+    <%= text_field_tag(:search) %>
+    <%= submit_tag("Search") %>
+<% end %>
+<ul>
+  <% @all_flights.each do |flight| %>
+      <li>
+        <h4>From: <%= flight.from_destination %> - To: <%= flight.to_destination %></h4>
+        <ul>
+          <li>Departure time: <%= flight.departure_time %></li>
+          <li>Arrival time: <%= flight.arrival_time %></li>
+          <li>Seats: <%= flight.seats %></li>
+
+        </ul>
+      </li>
+  <% end %>
+</ul>

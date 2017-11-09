@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'flight/index'
+
+  get 'flight/show'
+
   root to: 'flights#index', as: 'root'
 
   get 'index', to: 'flights#index', as: 'flights'
