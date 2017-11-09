@@ -4,13 +4,9 @@ Rails.application.routes.draw do
 
   get 'flight/show'
 
-  root to: 'flights#index', as: 'root'
+  root to: 'flight#index', as: 'root'
 
-  get 'index', to: 'flights#index', as: 'flights'
-
-  get 'flights/index'
-
-  get 'flights/show'
+  get 'index', to: 'flight#index', as: 'flights'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
