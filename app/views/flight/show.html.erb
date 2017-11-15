@@ -1,2 +1,5 @@
-<h1>Flight#show</h1>
-<p>Find me in app/views/flight/show.html.erb</p>
+<h1><%= @flight.flight_number %></h1>
+<ul>
+  <li><%= @flight.destination %></li>
+  <%= link_to 'Back', flights_path%>
+</ul>
