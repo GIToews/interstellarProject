@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116031218) do
+ActiveRecord::Schema.define(version: 20171116040103) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -67,7 +67,9 @@ ActiveRecord::Schema.define(version: 20171116031218) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "destination_id"
+    t.integer "rocket_id"
     t.index ["destination_id"], name: "index_flights_on_destination_id"
+    t.index ["rocket_id"], name: "index_flights_on_rocket_id"
   end
 
   create_table "moons", force: :cascade do |t|
@@ -89,6 +91,13 @@ ActiveRecord::Schema.define(version: 20171116031218) do
   create_table "planets", force: :cascade do |t|
     t.string "name"
     t.float "day_in_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rockets", force: :cascade do |t|
+    t.string "name"
+    t.string "company"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
