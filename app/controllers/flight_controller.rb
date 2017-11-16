@@ -1,9 +1,9 @@
 class FlightController < ApplicationController
   def index
     if params.has_key?(:search)
-      @all_flights = Flight.where("destination LIKE ?", "%#{params[:search]}%")
+      @flights = Flight.where("destination LIKE ?", "%#{params[:search]}%")
     else
-      @all_flights = Flight.all
+      @flights = Flight.all
     end
   end
 

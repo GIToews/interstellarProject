@@ -5,7 +5,7 @@
     <%= submit_tag("Search") %>
 <% end %>
 <ul>
-  <% @all_flights.each do |flight| %>
+  <% @flights.each do |flight| %>
       <li>
         <h4>Destination: <%= flight.destination %></h4>
         <ul>
