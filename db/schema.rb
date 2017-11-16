@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116021607) do
+ActiveRecord::Schema.define(version: 20171116025340) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -60,10 +60,32 @@ ActiveRecord::Schema.define(version: 20171116021607) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "moons", force: :cascade do |t|
+    t.string "name"
+    t.integer "planet_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["planet_id"], name: "index_moons_on_planet_id"
+  end
+
   create_table "passengers", force: :cascade do |t|
     t.string "user_name"
     t.string "name"
     t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "planets", force: :cascade do |t|
+    t.string "name"
+    t.float "day_in_hours"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stars", force: :cascade do |t|
+    t.string "name"
+    t.string "life_cycle_stage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
