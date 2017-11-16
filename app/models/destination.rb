@@ -1,4 +1,5 @@
 class Destination < ApplicationRecord
-  belongs_to :stars
-  belongs_to :planets
+  belongs_to :star
+  belongs_to :planet
+  has_many :flights
 end
