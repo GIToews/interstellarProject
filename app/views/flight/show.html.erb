@@ -1,5 +1,5 @@
-<h1><%= @flight.flight_number %></h1>
+<h1><%= @flight.name %></h1>
 <ul>
-  <li><%= @flight.destination %></li>
+  <li><%= @flight.destination.name %></li>
   <%= link_to 'Back', flights_path%>
 </ul>
