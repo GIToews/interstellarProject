@@ -1,5 +1,5 @@
 ActiveAdmin.register Destination do
 
-  permit_params :star_id, :planet_id
+  permit_params :name, :star_id, :planet_id
 
 end

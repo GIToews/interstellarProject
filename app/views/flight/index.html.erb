@@ -1,17 +1,24 @@
 <h1>Browsee flights</h1>
 <%= form_tag("/", method: "get") do %>
+
+    <%= label_tag(:rocketType, "Select Rocket: ") %>
+    <%= select_tag(:rocketType, options_for_select(@select_list, 0))  %>
+
     <%= label_tag(:search, "Search:") %>
     <%= text_field_tag(:search) %>
     <%= submit_tag("Search") %>
 <% end %>
-<ul>
+
+  <ul>
   <% @flights.each do |flight| %>
       <li>
-        <h4>Destination: <%= flight.destination %></h4>
+        <h4>Flight number: <%= flight.name %></h4>
         <ul>
-          <li>Departure time: <%= flight.departure_time %></li>
-          <li>Arrival time: <%= flight.arrival_time %></li>
-          <li>Seats: <%= flight.seat %></li>
+          <li>Destination: <%= flight.destination.name %></li>
+          <li>Departure time: <%= flight.departure_time.to_s %></li>
+          <li>Arrival time: <%= flight.arrival_time.to_s %></li>
+          <li>Total seats: <%= flight.seats %></li>
+          <li><%= flight.rocket.name %></li>
           <%= link_to 'Details', flight %>
         </ul>
       </li>
