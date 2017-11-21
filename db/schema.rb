@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116041736) do
+ActiveRecord::Schema.define(version: 20171121234356) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20171116041736) do
     t.integer "passenger_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity"
   end
 
   create_table "flights", force: :cascade do |t|
@@ -82,11 +83,12 @@ ActiveRecord::Schema.define(version: 20171116041736) do
   end
 
   create_table "passengers", force: :cascade do |t|
-    t.string "user_name"
     t.string "name"
-    t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country"
+    t.string "province"
+    t.string "city"
   end
 
   create_table "planets", force: :cascade do |t|
