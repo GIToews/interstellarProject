@@ -1,0 +1,36 @@
+<%= render 'header' %>
+
+<h1>Shopping cart</h1>
+
+<ul>
+  <li>Flights
+    <% if @cart_flights.length == 0%>
+        <ul><li>No items in cart</li></ul>
+    <% else %>
+        <% @cart_flights.each do |flight| %>
+        <ul>
+          <li>Flight name: <%= flight[0]["name"] %></li>
+          <li>
+          <%= form_tag("/cart", method: "post") do %>
+              <%= hidden_field_tag(:flight_id, flight[0]["id"]) %>
+              <%= label_tag(:quantity, "Quantity: ") %>
+              <%= text_field_tag(:quantity, flight[1]) %>
+              <%= submit_tag("Change Quantity") %>
+          <% end %>
+          <%= form_tag("/cart", method: "post") do %>
+              <%= hidden_field_tag(:flight_id, flight[0]["id"]) %>
+              <%= hidden_field_tag(:quantity, 0) %>
+              <%= submit_tag("Remove Flight") %>
+          <% end %>
+          </li>
+          <li>
+
+          </li>
+        </ul>
+            <li>--------------------------------------------</li>
+        <% end %>
+    <% end %>
+  </li>
+</ul>
+
+<%= render 'footer' %>

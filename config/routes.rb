@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
   root to: 'flight#index', as: 'flights'
 
+  get 'cart', to: 'flight#cart', as: 'cart'
+  post 'cart', to: 'flight#cart'
+
+
   # get 'index', to: 'flight#index', as: 'flights'
 
   get 'flights/:id', to: 'flight#show', as: 'flight', id: /\d+/

@@ -22,9 +22,15 @@
           <li>Total seats: <%= flight.seats %></li>
           <li><%= flight.rocket.name %></li>
           <%= link_to 'Details', flight %>
+          <%= link_to 'Add to Cart', controller: "flight", action: "cart", id:flight, method: :post %>
         </ul>
       </li>
   <% end %>
 </ul>
+
+<% if @result != nil %>
+    <%= @result %>
+<% end %>
+
 
 <%= render 'footer' %>
