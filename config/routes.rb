@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'passengers/create'
+
+  get 'passengers/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   get 'flight/index'
