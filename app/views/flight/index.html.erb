@@ -1,6 +1,6 @@
 <%= render 'header' %>
 
-<h1>Browsee flights</h1>
+<h1>Browse flights</h1>
 <%= form_tag("/", method: "get") do %>
 
     <%= label_tag(:rocketType, "Select Rocket: ") %>
@@ -16,6 +16,8 @@
       <li>
         <h4>Flight number: <%= flight.name %></h4>
         <ul>
+
+          <!--<li>Destination: <%= flight.rocket.name %></li>-->
           <li>Destination: <%= flight.destination.name %></li>
           <li>Departure time: <%= flight.departure_time.to_s %></li>
           <li>Arrival time: <%= flight.arrival_time.to_s %></li>
@@ -27,10 +29,6 @@
       </li>
   <% end %>
 </ul>
-
-<% if @result != nil %>
-    <%= @result %>
-<% end %>
 
 
 <%= render 'footer' %>
