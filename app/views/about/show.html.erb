@@ -1,0 +1,5 @@
+<!--<h1>About us</h1>-->
+<% @info.each do |entry|%>
+  <h3><%= entry.key %></h3>
+  <p><%= entry.content %></p>
+<% end %>
