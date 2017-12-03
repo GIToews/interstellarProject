@@ -1,3 +1,3 @@
 class About < ApplicationRecord
-  validates :key, :content, :type, presence: true
+  validates :key, :content, presence: true
 end

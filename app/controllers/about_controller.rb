@@ -1,5 +1,6 @@
 class AboutController < ApplicationController
   def show
-    @info = About.all;
+    @about = About.where(key: "About Us").first
+    @info = About.all
   end
 end

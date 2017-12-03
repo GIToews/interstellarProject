@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   root to: 'flight#index', as: 'flights'
 
+  get 'about', to: 'about#show', as: 'about'
+
   #FIx this later Passengers should not be plural
   get 'billing_info', to: 'passengers#create', as: 'billing'
   # get 'invoice', to: 'passenger#show', as: 'invoice'

@@ -1,5 +1,5 @@
 ActiveAdmin.register About do
 
-  permit_params :key, :content, :type
+  permit_params :key, :content
 
 end

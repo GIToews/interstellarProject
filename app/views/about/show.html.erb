@@ -1,5 +1,13 @@
-<!--<h1>About us</h1>-->
-<% @info.each do |entry|%>
-  <h3><%= entry.key %></h3>
-  <p><%= entry.content %></p>
-<% end %>
+<%= render 'header' %>
+<h1><%= @about.key %></h1>
+<p><%= @about.content %></p>
+<ul>
+  <% @info.each do |entry|%>
+      <% if entry.key != "About Us"%>
+         <li>
+            <%= entry.key %>:
+            <%= entry.content %>
+         </li>
+      <% end %>
+  <% end %>
+<%= render 'footer' %>
