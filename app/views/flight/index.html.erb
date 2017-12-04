@@ -1,4 +1,4 @@
-<%= render 'header' %>
+<%= render 'layouts/header' %>
 
 <h1>Browse flights</h1>
 <%= form_tag("/", method: "get") do %>
@@ -24,11 +24,11 @@
           <li>Total seats: <%= flight.seats %></li>
           <li><%= flight.rocket.name %></li>
           <%= link_to 'Details', flight %>
-          <%= link_to 'Add to Cart', controller: "flight", action: "cart", id:flight, method: :post %>
+          <%= link_to 'Add to Cart', controller: "cart", action: "index", id:flight, method: :post %>
         </ul>
       </li>
   <% end %>
 </ul>
 
 
-<%= render 'footer' %>
+<%= render 'layouts/footer' %>
