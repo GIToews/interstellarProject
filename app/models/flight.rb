@@ -1,7 +1,7 @@
 class Flight < ApplicationRecord
 
 
-  validates :departure_time, :arrival_time, :seats, :sale, :price, :new, presence: true
+  validates :departure_time, :arrival_time, :seats, :sale, :price, presence: true
   validates :seats, :price, :sale, numericality: true
 
   has_many :flight_passengers

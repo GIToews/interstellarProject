@@ -8,26 +8,13 @@ class CartController < ApplicationController
       add_flight_ticket_to_cart
     end
 
-
-    @test = "nothing"
-
-    # Doesnt enter here ()
     if params.has_key?(:flight_quantity) #&& params.has_key?(:flight_id)
-      @test = "something"
-
       change_flight_ticket_quantity
     end
 
-
     @cart_flights = session[:cart]
 
-    @test = "fail"
-
     if params.has_key?(:orderBy)
-
-      @test = "WootWoot"
-
-      #doesnt work for descending
       if params[:orderBy].to_i == 1
         @cart_flights = @cart_flights.sort_by{|flight| flight["arrival"].to_f}
       elsif params[:orderBy].to_i == 2
@@ -39,12 +26,54 @@ class CartController < ApplicationController
       end
     end
 
-    @select_list = Array.new()
-    @select_list.push(["None", 0])
-    @select_list.push(["Arrival Ascending", 1])
-    @select_list.push(["Arrival Descending", 2])
-    @select_list.push(["Departure Ascending", 3])
-    @select_list.push(["Departure Descending", 4])
+    if params.has_key?(:filterBy)
+
+      if params[:filterBy].to_i == 0
+        @cart_flights.each  do |item|
+          item["show"] = true;
+        end
+      elsif params[:filterBy].to_i == 1
+
+        @cart_flights.each  do |item|
+          if item["sale"].to_f <= 0.0
+            item["show"] = false;
+          else
+            item["show"] = true;
+          end
+        end
+      elsif params[:filterBy].to_i == 2
+        @cart_flights.each  do |item|
+          if item["new"].to_s == "false"
+            item["show"] = false;
+          else
+            item["show"] = true;
+          end
+        end
+      elsif params[:filterBy].to_i == 3
+
+        @cart_flights.each  do |item|
+          if (item["sale"].to_f > 0.0) && (item["new"].to_s == "true")
+            item["show"] = true;
+          else
+            item["show"] = false;
+          end
+        end
+      end
+    end
+
+    @select_order_list = Array.new()
+    @select_order_list.push(["None", 0])
+    @select_order_list.push(["Arrival Ascending", 1])
+    @select_order_list.push(["Arrival Descending", 2])
+    @select_order_list.push(["Departure Ascending", 3])
+    @select_order_list.push(["Departure Descending", 4])
+
+    @select_filter_list = Array.new()
+    @select_filter_list.push(["None", 0])
+    @select_filter_list.push(["Sale items", 1])
+    @select_filter_list.push(["New items", 2])
+    @select_filter_list.push(["New Sale items", 3])
+
   end
 
   # Private helper methods ################################################
@@ -54,25 +83,6 @@ class CartController < ApplicationController
     # reset_session
     session[:cart] ||= []
   end
-
-  # def add_flight_ticket_to_cart
-  #   existing_item = false
-  #
-  #   @cart_flights
-  #   @cart_flight = Flight.find(params[:id])
-  #
-  #   session[:cart].each do |item|
-  #     if item[0]["id"] == @cart_flight.id
-  #       item[1] = item[1].to_i + 1
-  #       existing_item = true
-  #     end
-  #   end
-  #
-  #   if !existing_item
-  #     session[:cart] << [@cart_flight, 1]
-  #   end
-  #   redirect_to cart_path
-  # end
 
   def add_flight_ticket_to_cart
     existing_item = false
@@ -91,7 +101,11 @@ class CartController < ApplicationController
                          :id => @cart_flight.id,
                          :quantity => 1,
                          :departure => @cart_flight.departure_time,
-                         :arrival => @cart_flight.arrival_time}
+                         :arrival => @cart_flight.arrival_time,
+                         :sale => @cart_flight.sale,
+                         :new => @cart_flight.new,
+                         :price => @cart_flight.price,
+                         :show => "true"}
     end
     redirect_to cart_path
   end
@@ -103,10 +117,8 @@ class CartController < ApplicationController
       if item["id"].to_s == params[:flight_id].to_s
         if params[:flight_quantity].to_i <= 0
           session[:cart].delete(item)
-          @test = "delete"
         else
           item["quantity"] = params[:flight_quantity]
-          @test = "add"
         end
       end
     end
