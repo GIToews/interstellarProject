@@ -21,16 +21,30 @@ class CartController < ApplicationController
 
     @cart_flights = session[:cart]
 
+    @test = "fail"
+
     if params.has_key?(:orderBy)
-      @list.sort_by{|e| e[:time_ago]}
+
+      @test = "WootWoot"
+
+      #doesnt work for descending
+      if params[:orderBy].to_i == 1
+        @cart_flights = @cart_flights.sort_by{|flight| flight["arrival"].to_f}
+      elsif params[:orderBy].to_i == 2
+        @cart_flights = @cart_flights.sort_by{|flight| -flight["arrival"].to_f}
+      elsif params[:orderBy].to_i == 3
+        @cart_flights = @cart_flights.sort_by{|flight| flight["departure"].to_f}
+      elsif params[:orderBy].to_i == 4
+        @cart_flights = @cart_flights.sort_by{|flight| -flight["departure"].to_f}
+      end
     end
 
     @select_list = Array.new()
     @select_list.push(["None", 0])
-    @select_list.push(["Arrival Descending", 1])
-    @select_list.push(["Arrival Ascending", 2])
-    @select_list.push(["Departure Descending", 3])
-    @select_list.push(["Departure Ascending", 4])
+    @select_list.push(["Arrival Ascending", 1])
+    @select_list.push(["Arrival Descending", 2])
+    @select_list.push(["Departure Ascending", 3])
+    @select_list.push(["Departure Descending", 4])
   end
 
   # Private helper methods ################################################

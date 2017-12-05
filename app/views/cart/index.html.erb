@@ -9,6 +9,11 @@
     <%= submit_tag("Order") %>
 <% end %>
 
+<p>
+
+  <%= @test.inspect %>
+</p>
+
 <ul>
   <li>Flights
     <% if @cart_flights.length == 0 %>
@@ -17,6 +22,8 @@
         <% @cart_flights.each do |flight| %>
             <ul>
               <li>Flight name: <%= flight["name"] %></li>
+              <li>Arrival time: <%= flight["arrival"] %></li>
+              <li>Departure time: <%= flight["departure"] %></li>
               <li>
                 <%= form_tag("/cart", method: "post") do %>
                     <%= hidden_field_tag(:flight_id, flight["id"]) %>

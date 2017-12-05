@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203210115) do
+ActiveRecord::Schema.define(version: 20171205170327) do
 
   create_table "abouts", force: :cascade do |t|
     t.string "key"
@@ -77,6 +77,9 @@ ActiveRecord::Schema.define(version: 20171203210115) do
     t.datetime "updated_at", null: false
     t.integer "rocket_id"
     t.integer "destination_id"
+    t.float "price"
+    t.float "sale", default: 0.0
+    t.boolean "new", default: true
     t.index ["destination_id"], name: "index_flights_on_destination_id"
     t.index ["rocket_id"], name: "index_flights_on_rocket_id"
   end
