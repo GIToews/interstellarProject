@@ -1,7 +1,4 @@
 class FlightController < ApplicationController
-
-  before_action :initialize_cart, only: [:cart]
-
   def index
 
     @select_list = Array.new()

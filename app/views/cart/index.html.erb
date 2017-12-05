@@ -2,30 +2,31 @@
 
 <h1>Shopping cart</h1>
 
-<% @select_list.each do |fuck| %>
-    <p>TEST</p>
+<%= form_tag("/cart", method: "get") do %>
+
+    <%= label_tag(:orderBy, "Order by: ") %>
+    <%= select_tag(:orderBy, options_for_select(@select_list, 0))  %>
+    <%= submit_tag("Order") %>
 <% end %>
-
-
 
 <ul>
   <li>Flights
-    <% if @cart_flights.length == 0%>
+    <% if @cart_flights.length == 0 %>
         <ul><li>No items in cart</li></ul>
     <% else %>
         <% @cart_flights.each do |flight| %>
             <ul>
-              <li>Flight name: <%= flight[0]["name"] %></li>
+              <li>Flight name: <%= flight["name"] %></li>
               <li>
                 <%= form_tag("/cart", method: "post") do %>
-                    <%= hidden_field_tag(:flight_id, flight[0]["id"]) %>
-                    <%= label_tag(:quantity, "Quantity: ") %>
-                    <%= text_field_tag(:quantity, flight[1]) %>
+                    <%= hidden_field_tag(:flight_id, flight["id"]) %>
+                    <%= label_tag(:flight_quantity, "Quantity: ") %>
+                    <%= text_field_tag(:flight_quantity, flight["quantity"]) %>
                     <%= submit_tag("Change Quantity") %>
                 <% end %>
                 <%= form_tag("/cart", method: "post") do %>
-                    <%= hidden_field_tag(:flight_id, flight[0]["id"]) %>
-                    <%= hidden_field_tag(:quantity, 0) %>
+                    <%= hidden_field_tag(:flight_id, flight["id"]) %>
+                    <%= hidden_field_tag(:flight_quantity, 0) %>
                     <%= submit_tag("Remove Flight") %>
                 <% end %>
               </li>
