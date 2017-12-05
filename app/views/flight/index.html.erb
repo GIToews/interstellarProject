@@ -22,6 +22,7 @@
           <li>Departure time: <%= flight.departure_time.to_s %></li>
           <li>Arrival time: <%= flight.arrival_time.to_s %></li>
           <li>Total seats: <%= flight.seats %></li>
+          <li>Price: <%= flight.price %></li>
           <li><%= flight.rocket.name %></li>
           <%= link_to 'Details', flight %>
           <%= link_to 'Add to Cart', controller: "cart", action: "index", id:flight, method: :post %>

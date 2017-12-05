@@ -14,7 +14,7 @@ class FlightController < ApplicationController
     end
 
 
-    @flights = Flight.all
+    @flights = Flight.all.order(:price)
 
     @rocketype = params[:rocketType]
 
