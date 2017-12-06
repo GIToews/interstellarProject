@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  get 'sessions/new'
+
+  resources :users
   get 'cart/index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -17,6 +20,8 @@ Rails.application.routes.draw do
   get 'flight/show'
 
   ######### Custom routes ##########
+
+  resource :sessions
 
   root to: 'flight#index', as: 'flights'
 

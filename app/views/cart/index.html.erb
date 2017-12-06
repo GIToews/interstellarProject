@@ -15,15 +15,6 @@
     <%= select_tag(:filterBy, options_for_select(@select_filter_list, 0))  %>
     <%= submit_tag("Filter") %>
 <% end %>
-<p>
-
-  <%= session[:cart].inspect %>
-</p>
-<p>
-  <%= session[:cart][0]["show"] %>
-</p>
-
-
 <ul>
   <li>Flights
     <% if @cart_flights.length == 0 %>
