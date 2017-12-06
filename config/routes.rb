@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'about', to: 'about#show', as: 'about'
 
   #FIx this later Passengers should not be plural
-  get 'billing_info', to: 'passengers#create', as: 'billing'
+  # get '', to: 'passengers#create', as: 'billing'
   # get 'invoice', to: 'passenger#show', as: 'invoice'
 
   get 'cart', to: 'cart#index', as: 'cart'
