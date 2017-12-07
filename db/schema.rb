@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206180251) do
+ActiveRecord::Schema.define(version: 20171206225240) do
 
   create_table "abouts", force: :cascade do |t|
     t.string "key"
@@ -62,11 +62,12 @@ ActiveRecord::Schema.define(version: 20171206180251) do
 
   create_table "flight_passengers", force: :cascade do |t|
     t.integer "flight_id"
-    t.integer "passenger_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity"
     t.integer "user_id"
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_flight_passengers_on_order_id"
     t.index ["user_id"], name: "index_flight_passengers_on_user_id"
   end
 
@@ -92,6 +93,12 @@ ActiveRecord::Schema.define(version: 20171206180251) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["planet_id"], name: "index_moons_on_planet_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "subtotal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "passengers", force: :cascade do |t|

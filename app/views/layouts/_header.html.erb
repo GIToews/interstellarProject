@@ -4,4 +4,7 @@
   <li><%= link_to 'About Us', about_path %></li>
   <li><%= link_to "Sign Up", new_user_path %></li>
   <li><%= link_to "Log In", new_sessions_path %></li>
+  <% if session.has_key?(:user_id) %>
+    <li><%= link_to 'Orders', orders_path %></li>
+  <% end %>
 </ul>

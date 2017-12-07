@@ -1,0 +1,10 @@
+<%= render 'layouts/header' %>
+
+<h1>All orders</h1>
+<ul>
+  <% @allOrders.each do |item| %>
+      <li> subtotal: $<%= item.subtotal %> date ordered: <%= item.created_at %> <%= link_to 'View order', new_order_path %></li>
+  <% end %>
+</ul>
+
+<%= render 'layouts/footer' %>

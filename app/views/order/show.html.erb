@@ -1,0 +1,39 @@
+<%= render 'layouts/header' %>
+<h1>Your order</h1>
+<ul>
+    <% @myOrder.flight_passengers.each do |item| %>
+        <li>
+            <%= item.flight.name %> - $
+            <%= item.flight.price%> x
+            <%= item.quantity %> = $
+            <%= item.flight.price * item.quantity %>
+        </li>
+    <% end %>
+
+  <ul>
+    <li>
+        Subtotal: $<%= @myOrder.subtotal %>
+    </li>
+    <% if @hst.to_f > 0.0 %>
+      <li>
+          Hst (<%= @hst %>%): $<%= @myOrder.subtotal * @hst.to_f %>
+      </li>
+    <% end %>
+    <% if @gst.to_f > 0.0%>
+      <li>
+        Gst (<%= @gst %>%): $<%= @myOrder.subtotal * @gst.to_f %>
+      </li>
+    <% end %>
+    <% if @pst.to_f > 0.0%>
+      <li>
+        Pst (<%= @pst %>%): $<%= @myOrder.subtotal * @pst.to_f %>
+      </li>
+    <% end %>
+    <li>
+        Total: $<%= @total %>
+    </li>
+  </ul>
+</ul>
+<%= link_to 'All orders', orders_path %>
+
+<%= render 'layouts/footer' %>
